@@ -1,0 +1,4 @@
+/* overriding hidden classes */
+::ng-deep mat-grid-tile .mat-figure {
+    display: block !important;
+}

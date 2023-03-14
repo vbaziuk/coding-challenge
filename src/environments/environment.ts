@@ -2,6 +2,12 @@
 // `ng build ---prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/**
+ * If you're running in development mode, it will run the function at least twice. 
+ * since in development mode it does a check, changes, then rechecks to verify, 
+ * where production mode only does the first check, assuming you've done your
+ * quality assurance and resolved any values the get changed post checking.
+ */
 export const environment = {
   production: false
 };

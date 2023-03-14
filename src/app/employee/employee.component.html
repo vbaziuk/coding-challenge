@@ -1,12 +1,20 @@
 <mat-card class="employee">
   <mat-card-header>
-    <mat-card-title>{{employee.lastName}}, {{employee.firstName}}</mat-card-title>
-    <mat-card-subtitle>{{employee.id}}</mat-card-subtitle>
+    <mat-card-title>{{employee.firstName}} {{employee.lastName}}, {{employee.position}}</mat-card-title>
+    <mat-card-subtitle>Employee ID: {{employee.id}} Direct Reports: {{ getReportCount() }}</mat-card-subtitle>
   </mat-card-header>
-  <mat-card-content>
+  <!-- <mat-card-content>
     <dl>
-      <dt>Job Title</dt>
+      <dt>Job Title:</dt>
       <dd>{{employee.position}}</dd>
     </dl>
-  </mat-card-content>
+  </mat-card-content> -->
+  <!-- <mat-card-content>
+    <dt>Direct Reports:</dt>
+    <dd>{{ getReportCount() }}</dd>
+  </mat-card-content> -->
+</mat-card>
+
+<mat-card>
+  <mat-card-content>Direct Reports {{ testvar }}</mat-card-content>
 </mat-card>
