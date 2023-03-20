@@ -1,0 +1,31 @@
+<h1 mat-dialog-title>UPDATE COMPENSATION</h1>
+<div mat-dialog-content class="edit-dialog-content">
+    <mat-form-field>
+        <mat-label>First Name</mat-label>
+        <label>
+            <input matInput [(ngModel)]="employee.firstName">
+        </label>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Last Name</mat-label>
+        <label>
+            <input matInput>
+        </label>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Position</mat-label>
+        <label>
+            <input matInput>
+        </label>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Compensation</mat-label>
+        <label>
+            <input matInput>
+        </label>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="null">Cancel</button>
+    <button mat-button [mat-dialog-close]="null">Ok</button>
+</div>

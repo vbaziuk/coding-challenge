@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-
 body {
     font-family: 'Roboto', sans-serif;
-}
-
-.page-title {
-    color: rgb(65, 65, 191);
+    background-color: #555E66;
 }

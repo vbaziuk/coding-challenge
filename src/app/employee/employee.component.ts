@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
-
-import { Employee } from '../employee';   // employee type interface
-
-import { EmployeeService } from '../employee.service';
-import { take } from 'rxjs/operators';
+import { Employee } from '../employee';
+import { MatDialog } from '@angular/material/dialog';
+import { EditComponent } from '../edit/edit.component';
+import { DeleteComponent } from '../delete/delete.component';
 
 @Component({
   selector: 'app-employee',
@@ -12,19 +11,43 @@ import { take } from 'rxjs/operators';
 })
 
 export class EmployeeComponent {
-  @Input() employee: Employee;
+  @Input() employees: Employee[]
+  @Input() employee: Employee;  //
+  reports: string[];  //
+  directReports: string[];
+  reportCounts: number;
 
-  // we may not need employeeService!!
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private dialog: MatDialog) { }
 
-  /** getReportCount
-   * @returns integer - the count of direct reports an employee has
-   */
-  getReportCount() {
+  get reportCount(): number {
+    return this.getReportCount()
+  }
+
+  get reportName(): void {
+    return this.getReports();
+  }
+
+  onEditClick(employee: Employee) {
+    console.log('edit button clicked: ', employee);
+    const editDialog = this.dialog.open(EditComponent, {data: employee});
+  }
+
+  onDeleteClick(employee: Employee) {
+    console.log('delete button clicked: ', employee);
+    const deleteDialog = this.dialog.open(DeleteComponent, {data: employee});
+  }
+
+  private getReportCount() {
     const directReports = this.employee.directReports;
-    if (directReports !== undefined) {
-      return directReports.length
-    }
-    return 0;
+    return directReports !== undefined ? directReports.length : 0;
+  }
+
+  private getReports() {
+    let reportNames = [];
+    let directReports = this.employee.directReports ? this.employee.directReports : [];
+    this.employees.forEach(
+      emp => directReports.includes(emp.id) ? reportNames.push(emp.firstName + " " + emp.lastName) : ''
+    );
+    this.reports = reportNames;
   }
 }

@@ -1,20 +1,28 @@
 <mat-card class="employee">
   <mat-card-header>
     <mat-card-title>{{employee.firstName}} {{employee.lastName}}, {{employee.position}}</mat-card-title>
-    <mat-card-subtitle>Employee ID: {{employee.id}} Direct Reports: {{ getReportCount() }}</mat-card-subtitle>
+    <mat-card-subtitle>Employee ID: {{employee.id}} Direct Reports: {{ reportCount }}</mat-card-subtitle>
   </mat-card-header>
-  <!-- <mat-card-content>
-    <dl>
-      <dt>Job Title:</dt>
-      <dd>{{employee.position}}</dd>
-    </dl>
-  </mat-card-content> -->
-  <!-- <mat-card-content>
-    <dt>Direct Reports:</dt>
-    <dd>{{ getReportCount() }}</dd>
-  </mat-card-content> -->
-</mat-card>
 
-<mat-card>
-  <mat-card-content>Direct Reports {{ testvar }}</mat-card-content>
+  <!-- if employee has direct reports  -->
+  <mat-card-content class="direct-reports">{{ reportName }}</mat-card-content>
+  <mat-card-content *ngIf="reports.length > 0">
+    <h3 mat-subheader>Direct Reports</h3>
+    <mat-list-item *ngFor="let report of reports">
+      <div class="report-rows">
+        <h4 mat-line>{{report}}</h4>
+        <a class="edit-button" (click)="onEditClick(report)" aria-label="edit">
+          <mat-icon>edit</mat-icon>
+        </a>
+        <a class="delete-button" (click)="onDeleteClick(report)" aria-label="delete">
+          <mat-icon>delete</mat-icon>
+        </a>
+      </div>
+    </mat-list-item>
+  </mat-card-content>
+
+  <!-- if employee don't have no direct reports -->
+  <mat-card-content *ngIf="!reports.length">
+    <h3 mat-subheader>This employee has no reports</h3>
+  </mat-card-content>
 </mat-card>

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { catchError, map, reduce } from 'rxjs/operators';
+import { catchError, map, reduce, take } from 'rxjs/operators';
 
 import { Employee } from '../employee';
 import { EmployeeService } from '../employee.service';
@@ -13,8 +13,6 @@ export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
   errorMessage: string;
 
-  // directReportIds: Number [];
-
   constructor(private employeeService: EmployeeService) { }
 
   async ngOnInit(): Promise<void> {
@@ -22,7 +20,7 @@ export class EmployeeListComponent implements OnInit {
       .pipe(
         reduce((emps, e: Employee) => emps.concat(e), []),
         map(emps => this.employees = emps),
-        catchError(this.handleError.bind(this))
+        catchError(this.handleError.bind(this)),
       ).subscribe();
   }
 
